@@ -36,22 +36,112 @@ function ej1(){
 // c. La primera parte acepta todos los caracteres punto (.) que se deseen pero no
 // puede ser ni el primer ni el último carácter ni tampoco pueden ir seguidos
 // d. La segunda parte acepta puntos, dígitos, guiones y letras.
- function validar_mail(){
-    let expReg: RegExp = new RegExp("lo_que_sea");
+ function ej2_validar_mail(){
+    const regExp = new RegExp("[^\s@]+@[^\s@]+\.[^\s@]+$");
+    
+    if(regExp.test($inputValue("email"))){
+    $writeNode("ok", "El email es valido");
+    $writeNode("error", "");
+    
+    }else{
+        $writeNode("ok", "");
+        $writeNode("error", "El email no cumple los requisitos");
+    }
+}
+/* 3. Escribe un programa que le pida al usuario qué porcentaje quiere aplicar para
+redimensionar la ventana. El programa debe pedir confirmación y solo en caso de
+que se acepte, se redimensionará la ventana al porcentaje indicado. Es necesario
+igualmente ir mostrando por consola que va ocurriendo en cada momento. ¿Se
+puede hacer esto? ¿Por qué crees que puede ocurrir? */
 
-    if(document.getElementById("email") !=null){
-        let mensajeOK = document.createElement("span");
-        let email: HTMLInputElement = document.getElementById("email") as HTMLInputElement;
+function ej3(){
+    let ventana = window.open("https://www.google.es", "nuevaVentana");
+}
 
-        if(expReg.test(email.value)){
-            mensajeOK.textContent= "Email correcto";
-        }else{
-            mensajeOK.textContent = "Email incorrecto";
-        }
 
-        }
+/* 4. Crea un formulario con un campo de tipo texto que pida una URL y al pulsar IR te
+redirija a la URL introducida. (window.location) */
+
+function redirect_to(){
+    const regExp = new RegExp("^https:\/\/");
+    const url = $inputValue("url").trim();
+    if(regExp.test(url)){
+        window.location.href=url;
+    }else{
+    $writeNode("error2", "Introduce una url valida");
+    window.setTimeout(() => $writeNode("error2","" ),3000);
     }
     
+} 
 
+
+//5. Abre una ventana emergente con la web del IES. (window.open)
+
+
+/* 6. Muestra un mensaje de saludo a los cinco segundos de abrir la aplicación. (set
+timeout (function, 5000ms) */
+
+
+/* 7. Muestra toda la información (nombre, versión, conexión y plataforma) del navegador
+usando el objeto navigator. (navigator.appName, navigator.appVersion,
+navigator.platform, navigator.connection) */
+
+
+/* 8. Muestra un mensaje por alerta cuando la página haya terminado de cargar. Usa el
+objeto onload. (window.onload() = function) */
+
+
+
+
+
+
+
+
+
+
+
+
+//Helpers (comunes para todo el boletín)
+
+function $inputValue(id:string): string{
+    const input = document.getElementById(id) as HTMLInputElement;
+    let result = "";
+    if(input){
+        result = input.value
+    }
+    return result;
+}
+
+function $writeNode(id : string, msg: string) : void{
+    const nodo = document.getElementById(id) as HTMLElement;
+    if(nodo){
+        nodo.textContent = msg;
+    }
+}
     
- 
+function suma(a: number, b: number): number{
+    const result = a+b;
+    return result;
+}
+
+// const suma2 =(a:number, b: number)=>a+b;
+
+
+let arrayPrueba = [1,3,5,7,9,13];
+
+const total =  arrayPrueba.reduce((contador,data)=> contador + data);
+
+const array2 = arrayPrueba.filter(arrayPrueba => arrayPrueba >5 );
+
+const array3 = arrayPrueba.map(arrayPrueba => (arrayPrueba)*2);
+
+const array4= arrayPrueba.some(arrayPrueba => arrayPrueba >5 );
+
+const array5 = arrayPrueba.every(arrayPrueba => arrayPrueba >5 );
+
+arrayPrueba.forEach((data,idx)=> console.log("Este es el elemento" + (idx+1) + ": "+ data));
+console.log(arrayPrueba);
+
+
+
+
